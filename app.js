@@ -4,10 +4,9 @@
  */
 
 var express = require('express'),
-    routes = require('./routes'),
-    user = require('./routes/user'),
     http = require('http'),
     path = require('path'),
+    routes = require('./config/routes.js'),
     db = require('./models');
 
 var app = express();
@@ -23,9 +22,7 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', function (req, res) {
-  console.log('hello');
-});
+routes(app);
 
 db.sequelize.sync().complete(function(err) {
   if (err) {
