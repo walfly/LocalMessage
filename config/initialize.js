@@ -14,6 +14,8 @@ module.exports = function (){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
+  app.use(express.cookieParser());
+  app.use(express.session({secret: '5484WALKER'}));
   app.use(express.static(path.join(__dirname, '/../public')));
 
   return app;
