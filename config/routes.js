@@ -11,4 +11,5 @@ module.exports = function (app){
   app.post('/createAccount', checkSession, createAccount.submit);
 
   app.get('/login', checkSession, login.page);
+  app.post('/login', checkSession, login.submit);
 }
