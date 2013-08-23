@@ -1,20 +1,7 @@
 var db = require('../models');
 
 exports.page = function (req, res){
-  var findP;
-  if(req.session && req.session.userID){
-    findP = db.User.find(req.session.userID);
-    findP.success(function(user){
-      res.render('memberHome', user);
-    });
-    findP.error(function (err){
-      console.log(err);
-      //change this to error page
-      res.render('createAccount', {title: 'Create Account', err: 2});
-    })
-  } else {
-    res.render('createAccount', { title: 'Create Account', err: req.query['err'] });
-  }
+  res.render('createAccount', { title: 'Create Account', err: req.query['err'] });
 };
 
 exports.submit = function (req, res){
@@ -36,6 +23,6 @@ exports.submit = function (req, res){
     createP.error(function (err){
       console.log(err);
       res.redirect('/createAccount?err=2');
-    })
+    });
   }
 };
