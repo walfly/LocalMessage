@@ -10,3 +10,7 @@ a {
 .login > div{
   display: inline-block;
 }
+
+#map-canvas{
+  height: 100%;
+}

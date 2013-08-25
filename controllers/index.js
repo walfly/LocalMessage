@@ -1,4 +1,5 @@
 
 module.exports = function(req, res){
-  res.render('index', { title: 'Express'});
+  var apiKey =  process.env.GOOGLEMAPSAPI;
+  res.render('index', { title: 'Express', apiKey: apiKey });
 };

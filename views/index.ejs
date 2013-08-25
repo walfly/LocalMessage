@@ -3,11 +3,19 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map-canvas { height: 100% }
+    </style>
+    <script src = 'https://maps.googleapis.com/maps/api/js?key=<%=apiKey%>&libraries=drawing&sensor=true'></script>
+    <script type="text/javascript" src = 'javascripts/loadMap.js'></script>
   </head>
   <body>
-    <div class="login">
+<!--     <div class="login">
       <div> <a href="/createAccount"> create account </a> </div>
-      <div> <a href="/logIn"> log in </div>
-    </div>
+      <div> <a href="/logIn"> log in </a> </div>
+    </div> -->
+    <div id = 'map-canvas'></div>
   </body>
 </html>
