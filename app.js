@@ -7,9 +7,12 @@ var express = require('express'),
     http = require('http'),
     app = require('./config/initialize.js')(),
     routes = require('./config/routes.js'),
-    db = require('./models');
+    db = require('./models'),
+    dummy = require('./migrations/dummyData.js');
 
 routes(app);
+
+//dummy();
 
 db.sequelize.sync().complete(function(err) {
   if (err) {
