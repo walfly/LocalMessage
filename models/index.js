@@ -21,13 +21,21 @@ if (!global.hasOwnProperty('db')) {
   global.db = {
     Sequelize: Sequelize,
     sequelize: sequelize,
-    User:      sequelize.import(__dirname + '/user.js')
+    User:      sequelize.import(__dirname + '/user.js'),
+    Message:   sequelize.import(__dirname + '/message.js')
 
     // add your other models here
   }
 
+  global.db.Message.hasOne(global.db.User, {as: "Author"});
+  global.db.User.hasMany(global.db.Message);
+
   global.db.User.sync(function (err){
-    if(err) console.log(err);
+    if(err) console.log('user err', err);
+  });
+
+  global.db.Message.sync(function (err){
+    if(err) console.log('message err', err);
   });
   /*
     Associations can be defined here. E.g. like this:

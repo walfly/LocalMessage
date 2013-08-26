@@ -8,8 +8,8 @@ module.exports = function (req, res, next){
     });
     findP.error(function (err){
       console.log('check', err);
-      //change this to error page
-      res.render('index', {title: 'express', err: 2});
+      var apiKey = process.env.GOOGLEMAPSAPI;
+      res.render('index', {title: 'express', apiKey: apiKey});
     })
   } else {
     console.log('going to next call back')

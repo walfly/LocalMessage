@@ -10,6 +10,7 @@ var initialize = function () {
   // Try HTML5 geolocation
   if(navigator.geolocation){
     navigator.geolocation.getCurrentPosition(function(position) {
+      console.log('latitude',position.coords.latitude, 'longitude', position.coords.longitude);
       var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
       var infoWindow = new google.maps.InfoWindow({
