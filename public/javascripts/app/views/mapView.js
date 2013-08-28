@@ -6,9 +6,6 @@ bb.Views.MapView = Backbone.View.extend({
     var myOptions = {
       zoom: 8,
       center: this.pos,
-      mapTypeControl: true,
-      mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
-      navigationControl: true,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
     this.map = new google.maps.Map(this.el, myOptions);
