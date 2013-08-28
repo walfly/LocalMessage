@@ -1,5 +1,11 @@
+html{
+  height: 100%;
+}
+
 body {
-  padding: 50px;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -7,10 +13,23 @@ a {
   color: #00B7FF;
 }
 
+.login{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background: rgba( 255, 255, 255, .8);
+  height: 50px;
+  width: 100%;
+  border-bottom: 1px solid black;
+}
+
 .login > div{
   display: inline-block;
 }
 
 #map-canvas{
+  top: 0px;
+  z-index: -999;
   height: 100%;
+  width: 100%;
 }

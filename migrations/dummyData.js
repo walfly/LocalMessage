@@ -44,6 +44,12 @@ var myMessages = [{
   }
 ];
 
+var message1 = {
+  latitude: 40.7150868,
+  longitude: -73.9363024,
+  message: 'developing here'
+}
+
 var dogMessages = [{
   latitude: 46.111,
   longitude: -73.9,
@@ -148,17 +154,15 @@ var pigeonMessages = [{
 
 
 module.exports = function(){
-  db.User.find({where: {username: 'Dog'}})
+  db.User.find({where: {username: 'walfly'}})
     .success(function (pigeon){
-      _.each(dogMessages, function(message){
-        db.Message.create({
-          latitude: message.latitude,
-          longitude: message.longitude,
-          message: message.message
-        }).success(function(message){
-          message.setAuthor(pigeon);
-          pigeon.addMessage(message);
-        });
+      db.Message.create({
+        latitude: message1.latitude,
+        longitude: message1.longitude,
+        message: message1.message
+      }).success(function(message){
+        message.setAuthor(pigeon);
+        pigeon.addMessage(message);
       });
     });
 }

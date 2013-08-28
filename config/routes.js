@@ -1,7 +1,8 @@
 var homepage = require('../controllers/index.js'),
     login = require('../controllers/login.js'),
     checkSession = require('../controllers/checkSession.js'),
-    createAccount = require('../controllers/createAccount.js');
+    createAccount = require('../controllers/createAccount.js'),
+    messages = require('../controllers/messages.js');
 
 
 module.exports = function (app){
@@ -12,4 +13,6 @@ module.exports = function (app){
 
   app.get('/login', checkSession, login.page);
   app.post('/login', checkSession, login.submit);
+
+  app.get('/messages', messages.collections);
 }

@@ -34,9 +34,9 @@ if (!global.hasOwnProperty('db')) {
     if(err) console.log('user err', err);
   });
 
-  global.db.Message.sync(function (err){
-    if(err) console.log('message err', err);
-  });
+  // global.db.Message.sync(function (err){
+  //   if(err) console.log('message err', err);
+  // });
   /*
     Associations can be defined here. E.g. like this:
     global.db.User.hasMany(global.db.SomethingElse)

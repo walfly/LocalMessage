@@ -12,7 +12,7 @@ var express = require('express'),
 
 routes(app);
 
-//dummy();
+// dummy();
 
 db.sequelize.sync().complete(function(err) {
   if (err) {
