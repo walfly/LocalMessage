@@ -1,7 +1,9 @@
 bb.Views.MessagesView = Backbone.View.extend({
 
-  initialize: function () {
+  initialize: function (options) {
+    this.map = options.map;
     var self = this;
+    console.log(this);
     this.collection.fetch({
       success: function(){
         self.render();
@@ -11,17 +13,8 @@ bb.Views.MessagesView = Backbone.View.extend({
 
   render: function () {
     this.markers = [];
-    console.log('what is going on');
     this.collection.each(function (item) {
-      var latitude = item.get('latitude');
-      var longitude = item.get ('longitude');
-      console.log(latitude, longitude);
-      var pos = new google.maps.LatLng(latitude, longitude);
-      var marker = new google.maps.InfoWindow({
-        map: bb.map,
-        position: pos,
-        content: item.message
-      });
+      var marker = new bb.Views.MessageView({model: item, map:this.map});
       this.markers.push(marker);
     }, this);
   }
