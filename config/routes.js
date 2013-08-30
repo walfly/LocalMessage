@@ -16,5 +16,6 @@ module.exports = function (app){
 
   app.get('/messages', messages.collections);
   app.get('/messages/:id', messages.model);
-  app.get('/messages/:lat/:long', messages.local);
+  app.get('/messages/:bot/:top', messages.local);
+
 }

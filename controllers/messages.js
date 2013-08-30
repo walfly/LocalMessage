@@ -13,7 +13,7 @@ exports.model = function (req, res){
 };
 
 exports.local = function (req, res){
-  // the individual model route
+  console.log(req.params);
 };
 
 
