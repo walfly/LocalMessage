@@ -3,6 +3,7 @@ var bb = {
   Models: {},
   Collections: {},
   Helpers: {},
+  Templates: {},
   init: function (obj) {
     this.lat = obj.latitude || 60;
     this.lng = obj.longitude || 105;

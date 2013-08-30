@@ -2,6 +2,8 @@
 <html>
   <head>
     <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src = 'https://maps.googleapis.com/maps/api/js?key=<%=apiKey%>&libraries=drawing&sensor=true'></script>
     <script src = 'javascripts/lib/jquery.js'></script>
@@ -14,6 +16,8 @@
     <script src = 'javascripts/app/views/messageView.js'></script>
     <script src = 'javascripts/app/models/messageModel.js'></script>
     <script src = 'javascripts/app/collections/messageCollection.js'></script>
+    <script src = 'javascripts/app/templates/dialogueTemplate.js'></script>
+    <script src = 'javascripts/app/views/dialogueView.js'></script>
     <script src = 'javascripts/app/helpers/viewHelpers.js'></script>
     <script type="text/javascript">
       $(function () {
@@ -22,10 +26,15 @@
     </script>
   </head>
   <body>
-    <div id = 'map-canvas'></div>
     <div class="login">
       <div> <a href="/createAccount"> create account </a> </div>
       <div> <a href="/logIn"> log in </a> </div>
+    </div>
+    <div class='container'>
+      <div id = 'map-canvas'></div>
+      <div id = 'dialogue'>
+        <h1>Click on a point</h1>
+      </div>
     </div>
   </body>
 </html>

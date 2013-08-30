@@ -1,4 +1,5 @@
-var db = require('../models');
+var db = require('../models'),
+     _ = require('underscore');
 
 exports.collections = function (req, res){
   var messages = db.Message.findAll();
@@ -6,3 +7,9 @@ exports.collections = function (req, res){
     res.send(JSON.stringify(messages));
   });
 };
+
+exports.model = function (req, res){
+  // the individual model route
+};
+
+

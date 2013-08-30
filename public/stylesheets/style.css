@@ -1,12 +1,27 @@
 html{
   height: 100%;
 }
-
 body {
   height: 100%;
   padding: 0px;
   margin: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+.container {
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+  position: relative;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+#dialogue {
+  height: 200px;
+  width: 334px;
+  background-color: whitesmoke;
+  top:20%;
+  left: 20%;
+  position: absolute;
 }
 
 a {
@@ -14,11 +29,10 @@ a {
 }
 
 .login{
-  position: absolute;
   top: 0px;
   left: 0px;
-  background: rgba( 255, 255, 255, .8);
-  height: 50px;
+  background: rgb( 255, 255, 255);
+  height: 40px;
   width: 100%;
   border-bottom: 1px solid black;
 }

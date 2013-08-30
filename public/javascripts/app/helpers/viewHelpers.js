@@ -8,6 +8,6 @@ bb.Helpers.delegateMapEvents = function (obj, events, context){
       throw new Error('Method "' + events[key] + '" does not exist');
     }
     method = _.bind(method, context);
-    google.maps.addListener(obj, key, method);
+    google.maps.event.addListener(obj, key, method);
   }
 };

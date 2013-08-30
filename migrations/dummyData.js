@@ -41,14 +41,14 @@ var myMessages = [{
   latitude: 41.111,
   longitude: -73.00001,
   message: "MESSAGE MESSAGE MESSAGE MESSAGE MESSAGE MESSAGE"
+  },
+  {
+    latitude: 40.7150868,
+    longitude: -73.9363024,
+    message: 'developing here'
   }
 ];
 
-var message1 = {
-  latitude: 40.7150868,
-  longitude: -73.9363024,
-  message: 'developing here'
-}
 
 var dogMessages = [{
   latitude: 46.111,
@@ -155,14 +155,101 @@ var pigeonMessages = [{
 
 module.exports = function(){
   db.User.find({where: {username: 'walfly'}})
-    .success(function (pigeon){
+    .success(function (user){
+      _.each(myMessages, function (message){
+        db.Message.create({
+          latitude: message.latitude,
+          longitude: message.longitude,
+          message: message.message,
+          username: user.username
+        }).success(function(message){
+          message.setAuthor(user);
+          user.addMessage(message);
+        });
+      });
+    });
+  db.User.find({where: {username: 'Dog'}})
+  .success(function (user){
+    _.each(dogMessages, function (message){
       db.Message.create({
-        latitude: message1.latitude,
-        longitude: message1.longitude,
-        message: message1.message
+        latitude: message.latitude,
+        longitude: message.longitude,
+        message: message.message,
+        username: user.username
       }).success(function(message){
-        message.setAuthor(pigeon);
-        pigeon.addMessage(message);
+        message.setAuthor(user);
+        user.addMessage(message);
+      });
+    });
+  });
+  db.User.find({where: {username: 'Carrot'}})
+    .success(function (user){
+      _.each(carrotMessages, function (message){
+        db.Message.create({
+          latitude: message.latitude,
+          longitude: message.longitude,
+          message: message.message,
+          username: user.username
+        }).success(function(message){
+          message.setAuthor(user);
+          user.addMessage(message);
+        });
+      });
+    });
+  db.User.find({where: {username: 'Fox'}})
+    .success(function (user){
+      _.each(foxMessages, function (message){
+        db.Message.create({
+          latitude: message.latitude,
+          longitude: message.longitude,
+          message: message.message,
+          username: user.username
+        }).success(function(message){
+          message.setAuthor(user);
+          user.addMessage(message);
+        });
+      });
+    });
+    db.User.find({where: {username: 'Cow'}})
+    .success(function (user){
+      _.each(cowMessages, function (message){
+        db.Message.create({
+          latitude: message.latitude,
+          longitude: message.longitude,
+          message: message.message,
+          username: user.username
+        }).success(function(message){
+          message.setAuthor(user);
+          user.addMessage(message);
+        });
+      });
+    });
+    db.User.find({where: {username: 'Moose'}})
+    .success(function (user){
+      _.each(mooseMessages, function (message){
+        db.Message.create({
+          latitude: message.latitude,
+          longitude: message.longitude,
+          message: message.message,
+          username: user.username
+        }).success(function(message){
+          message.setAuthor(user);
+          user.addMessage(message);
+        });
+      });
+    });
+    db.User.find({where: {username: 'Pigeon'}})
+    .success(function (user){
+      _.each(pigeonMessages, function (message){
+        db.Message.create({
+          latitude: message.latitude,
+          longitude: message.longitude,
+          message: message.message,
+          username: user.username
+        }).success(function(message){
+          message.setAuthor(user);
+          user.addMessage(message);
+        });
       });
     });
 }

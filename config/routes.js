@@ -15,4 +15,5 @@ module.exports = function (app){
   app.post('/login', checkSession, login.submit);
 
   app.get('/messages', messages.collections);
+  app.get('/messages/:id', messages.model);
 }

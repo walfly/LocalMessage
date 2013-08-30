@@ -8,7 +8,16 @@ bb.Views.MessageView = Backbone.View.extend({
       map : this.map,
       position : pos,
     });
+    bb.Helpers.delegateMapEvents(this.marker, this.markerEvents, this);
     this.render();
+  },
+
+  markerEvents: {
+    'click' : 'displayDialogue'
+  },
+
+  displayDialogue : function (){
+    this.model.trigger('selected', this.model);
   },
 
   render: function (){
