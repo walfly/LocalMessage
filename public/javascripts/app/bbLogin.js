@@ -10,3 +10,6 @@ var bb = {
     this.mapView = new this.Views.MapView();
   }
 };
+
+var initializeBB = _.bind(bb.init, bb);
+

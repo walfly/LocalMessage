@@ -12,4 +12,8 @@ exports.model = function (req, res){
   // the individual model route
 };
 
+exports.local = function (req, res){
+  // the individual model route
+};
+
 

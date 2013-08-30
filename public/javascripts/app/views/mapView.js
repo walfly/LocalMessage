@@ -10,6 +10,7 @@ bb.Views.MapView = Backbone.View.extend({
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
     this.map = new google.maps.Map(this.el, myOptions);
+    console.log(this.map.getBounds());
     this.messages = new bb.Collections.Messages();
     this.messages.on('selected', this.displaySelected);
     this.render();
