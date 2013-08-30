@@ -6,7 +6,7 @@ bb.Views.MapView = Backbone.View.extend({
     google.maps.visualRefresh = true;
     this.pos = new google.maps.LatLng(bb.lat, bb.lng);
     var myOptions = {
-      zoom: 14,
+      zoom: 11,
       center: this.pos,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
@@ -22,7 +22,7 @@ bb.Views.MapView = Backbone.View.extend({
         swlat: sw.lat(),
         swlng: sw.lng(),
       });
-      self.messages.on('selected', this.displaySelected);
+      self.messages.on('selected', self.displaySelected);
       self.render();
       self.addMarkers();
     });
