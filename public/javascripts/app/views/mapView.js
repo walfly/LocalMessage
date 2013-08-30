@@ -2,9 +2,10 @@ bb.Views.MapView = Backbone.View.extend({
   el: '#map-canvas',
 
   initialize: function (){
+    google.maps.visualRefresh = true;
     this.pos = new google.maps.LatLng(bb.lat, bb.lng);
     var myOptions = {
-      zoom: 8,
+      zoom: 14,
       center: this.pos,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }

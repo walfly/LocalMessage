@@ -136,120 +136,75 @@ var mooseMessages = [{
 ];
 
 var pigeonMessages = [{
-  latitude: 42.2222,
-  longitude: -72.6666,
-  message: "MESSAGE MESSAGE MESSAGE MESSAGE MESSAGE MESSAGE"
+    latitude: 40.7021868,
+    longitude: -73.8903426,
+    message: '1 lot of pigeons in NYC'
   },
   {
-  latitude: 43.61111,
-  longitude: -75.2222,
-  message: "MESSAGE MESSAGE MESSAGE MESSAGE MESSAGE MESSAGE"
+    latitude: 40.7270265,
+    longitude: -73.9663034,
+    message: '2 lot of pigeons in NYC'
   },
   {
-  latitude: 42.1000,
-  longitude: -73.8111,
-  message: "MESSAGE MESSAGE MESSAGE MESSAGE MESSAGE MESSAGE"
+    latitude: 40.6955968,
+    longitude: -73.8933124,
+    message: '3 lot of pigeons in NYC'
+  },
+  {
+    latitude: 40.7351068,
+    longitude: -73.9533020,
+    message: '4 lot of pigeons in NYC'
+  },
+  {
+    latitude: 40.7474958,
+    longitude: -73.9763044,
+    message: '5 lot of pigeons in NYC'
+  },
+  {
+    latitude: 40.6952966,
+    longitude: -73.9463023,
+    message: '6 lot of pigeons in NYC'
+  },
+  {
+    latitude: 40.7355968,
+    longitude: -73.9873018,
+    message: '7 lot of pigeons in NYC'
+  },
+  {
+    latitude: 40.7192968,
+    longitude: -73.9199010,
+    message: '8 lot of pigeons in NYC'
+  },
+  {
+    latitude: 40.7181973,
+    longitude: -73.9462010,
+    message: '9 lot of pigeons in NYC'
   }
 ];
 
+var createAndAssociate = function (username, messageArr) {
+  db.User.find({where: {username: username}})
+    .success(function (user){
+      _.each(messageArr, function (message){
+        db.Message.create({
+          latitude: message.latitude,
+          longitude: message.longitude,
+          message: message.message,
+          username: user.username
+        }).success(function(message){
+          message.setAuthor(user);
+          user.addMessage(message);
+        });
+      });
+    });
+};
 
 module.exports = function(){
-  db.User.find({where: {username: 'walfly'}})
-    .success(function (user){
-      _.each(myMessages, function (message){
-        db.Message.create({
-          latitude: message.latitude,
-          longitude: message.longitude,
-          message: message.message,
-          username: user.username
-        }).success(function(message){
-          message.setAuthor(user);
-          user.addMessage(message);
-        });
-      });
-    });
-  db.User.find({where: {username: 'Dog'}})
-  .success(function (user){
-    _.each(dogMessages, function (message){
-      db.Message.create({
-        latitude: message.latitude,
-        longitude: message.longitude,
-        message: message.message,
-        username: user.username
-      }).success(function(message){
-        message.setAuthor(user);
-        user.addMessage(message);
-      });
-    });
-  });
-  db.User.find({where: {username: 'Carrot'}})
-    .success(function (user){
-      _.each(carrotMessages, function (message){
-        db.Message.create({
-          latitude: message.latitude,
-          longitude: message.longitude,
-          message: message.message,
-          username: user.username
-        }).success(function(message){
-          message.setAuthor(user);
-          user.addMessage(message);
-        });
-      });
-    });
-  db.User.find({where: {username: 'Fox'}})
-    .success(function (user){
-      _.each(foxMessages, function (message){
-        db.Message.create({
-          latitude: message.latitude,
-          longitude: message.longitude,
-          message: message.message,
-          username: user.username
-        }).success(function(message){
-          message.setAuthor(user);
-          user.addMessage(message);
-        });
-      });
-    });
-    db.User.find({where: {username: 'Cow'}})
-    .success(function (user){
-      _.each(cowMessages, function (message){
-        db.Message.create({
-          latitude: message.latitude,
-          longitude: message.longitude,
-          message: message.message,
-          username: user.username
-        }).success(function(message){
-          message.setAuthor(user);
-          user.addMessage(message);
-        });
-      });
-    });
-    db.User.find({where: {username: 'Moose'}})
-    .success(function (user){
-      _.each(mooseMessages, function (message){
-        db.Message.create({
-          latitude: message.latitude,
-          longitude: message.longitude,
-          message: message.message,
-          username: user.username
-        }).success(function(message){
-          message.setAuthor(user);
-          user.addMessage(message);
-        });
-      });
-    });
-    db.User.find({where: {username: 'Pigeon'}})
-    .success(function (user){
-      _.each(pigeonMessages, function (message){
-        db.Message.create({
-          latitude: message.latitude,
-          longitude: message.longitude,
-          message: message.message,
-          username: user.username
-        }).success(function(message){
-          message.setAuthor(user);
-          user.addMessage(message);
-        });
-      });
-    });
+  createAndAssociate('walfly', myMessages);
+  createAndAssociate('Carrot', carrotMessages);
+  createAndAssociate('Cow', cowMessages);
+  createAndAssociate('Fox', foxMessages);
+  createAndAssociate('Moose', mooseMessages);
+  createAndAssociate('Dog', dogMessages);
+  createAndAssociate('Pigeon', pigeonMessages);
 }

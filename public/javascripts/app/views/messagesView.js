@@ -3,7 +3,6 @@ bb.Views.MessagesView = Backbone.View.extend({
   initialize: function (options) {
     this.map = options.map;
     var self = this;
-    console.log(this);
     this.collection.fetch({
       success: function(){
         self.render();
