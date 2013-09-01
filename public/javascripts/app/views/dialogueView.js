@@ -7,6 +7,14 @@ bb.Views.DialogueView = Backbone.View.extend({
     this.render();
   },
 
+  events: {
+    'click' : 'usernameSearch'
+  },
+
+  usernameSearch: function (e){
+    console.log($(e.target).html());
+  },
+
   render: function (){
     this.$el.empty()
     var message = this.model.toJSON();
