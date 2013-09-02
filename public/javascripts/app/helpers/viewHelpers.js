@@ -11,3 +11,4 @@ bb.Helpers.delegateMapEvents = function (obj, events, context){
     google.maps.event.addListener(obj, key, method);
   }
 };
+

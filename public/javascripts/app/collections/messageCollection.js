@@ -12,8 +12,6 @@ bb.Collections.Messages = Backbone.Collection.extend({
     var ne = '' + boundsArray[0] + '_' + boundsArray[1];
     var sw = '' + boundsArray[2] + '_' + boundsArray[3];
     this.url = '/messages/' + sw + '/' + ne;
-    this.fetch({success: function (collection){
-      console.log(collection);
-    }});
+    this.fetch();
   }
 });
