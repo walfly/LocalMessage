@@ -1,18 +1,21 @@
 var homepage = require('../controllers/index.js'),
     login = require('../controllers/login.js'),
+    user = require('../controllers/user.js'),
     checkSession = require('../controllers/checkSession.js'),
     createAccount = require('../controllers/createAccount.js'),
     messages = require('../controllers/messages.js');
 
 
 module.exports = function (app){
-  app.get('/', checkSession, homepage);
+  app.get('/', checkSession.entry, homepage);
 
-  app.get('/createAccount', checkSession, createAccount.page);
-  app.post('/createAccount', checkSession, createAccount.submit);
+  app.get('/createAccount', checkSession.entry, createAccount.page);
+  app.post('/createAccount', createAccount.submit);
 
-  app.get('/login', checkSession, login.page);
-  app.post('/login', checkSession, login.submit);
+  app.get('/login', checkSession.entry, login.page);
+  app.post('/login', login.submit);
+
+  app.get('/user/login/:latlng/:id', checkSession.member, user.login);
 
   app.get('/messages', messages.collections);
   app.get('/messages/:id', messages.model);

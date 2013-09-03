@@ -10,7 +10,33 @@ bb.Views.LoginView = Backbone.View.extend({
 
   events:{
     'click .login': 'loginScreen',
-    'click .mask': 'hideLogin'
+    'click .mask': 'hideLogin',
+    'click .submit': 'tryPassword'
+  },
+
+  tryPassword: function () {
+    var self = this;
+    var formData = $('form').serializeArray();
+    $('#username').val('');
+    $('#password').val('');
+    var data = {};
+    data[formData[0].name] = formData[0].value;
+    data[formData[1].name] = formData[1].value;
+    var submit = $.ajax({
+      url: '/login',
+      type: 'POST',
+      dataType: 'json',
+      data: data
+    });
+    submit.done( function (data) {
+      if(data.err){
+        $('.loginForm').empty();
+        $('.loginForm').append(self.template(data));
+      } else {
+        var latlng = '' + bb.lat + '_' + bb.lng;
+        location.href = '/user/login/'+latlng+'/' + data.id;
+      }
+    });
   },
 
   loginScreen: function () {
@@ -28,6 +54,5 @@ bb.Views.LoginView = Backbone.View.extend({
   render: function () {
     return this;
   }
-
 
 });

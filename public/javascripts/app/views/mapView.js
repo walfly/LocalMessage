@@ -19,7 +19,7 @@ bb.Views.MapView = Backbone.View.extend({
       swlng: bounds[3]
     });
 
-    bb.Helpers.delegateMapEvents(self.map, self.mapEvents, self);
+    bb.Helpers.delegateMapEvents(this.map, this.mapEvents, this);
     this.messages.on('selected', this.displaySelected);
 
     this.render();

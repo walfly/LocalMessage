@@ -44,7 +44,6 @@ exports.local = function (req, res){
     }
   });
   messagesP.success(function (messages){
-    console.log(JSON.stringify(messages));
     res.send(JSON.stringify(messages));
   });
 };
