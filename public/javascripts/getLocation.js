@@ -7,6 +7,6 @@ var getLocation = function (cb){
       cb(coords);
     });
   } else {
-    // right fallback
+    // write fallback
   }
 }

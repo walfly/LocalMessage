@@ -3,6 +3,30 @@ bb.Views.MapView = Backbone.View.extend({
 
   initialize: function (){
     var self = this;
+    this.login = new bb.Views.LoginView();
+    this.makeMap();
+    var loadCollection = _.bind(this.loadCollection, this);
+    google.maps.event.addListenerOnce(this.map, 'idle', loadCollection);
+  },
+
+  loadCollection: function (ev) {
+    var bounds = this.getMapBounds();
+
+    this.messages = new bb.Collections.Messages({
+      nelat: bounds[0],
+      nelng: bounds[1],
+      swlat: bounds[2],
+      swlng: bounds[3]
+    });
+
+    bb.Helpers.delegateMapEvents(self.map, self.mapEvents, self);
+    this.messages.on('selected', this.displaySelected);
+
+    this.render();
+    this.addMarkers();
+  },
+
+  makeMap: function () {
     google.maps.visualRefresh = true;
     this.pos = new google.maps.LatLng(bb.lat, bb.lng);
     var myOptions = {
@@ -11,23 +35,6 @@ bb.Views.MapView = Backbone.View.extend({
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
     this.map = new google.maps.Map(this.el, myOptions);
-    google.maps.event.addListenerOnce(this.map, 'idle', function(ev){
-
-      var bounds = self.getMapBounds();
-
-      self.messages = new bb.Collections.Messages({
-        nelat: bounds[0],
-        nelng: bounds[1],
-        swlat: bounds[2],
-        swlng: bounds[3]
-      });
-
-      bb.Helpers.delegateMapEvents(self.map, self.mapEvents, self);
-      self.messages.on('selected', self.displaySelected);
-
-      self.render();
-      self.addMarkers();
-    });
   },
 
   mapEvents: {
