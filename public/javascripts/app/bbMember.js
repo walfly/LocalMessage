@@ -4,11 +4,10 @@ var bb = {
   Collections: {},
   Helpers: {},
   Templates: {},
-  init: function (lat, lng) {
+  init: function (lat, lng, user) {
     this.lat = lat || 60;
     this.lng = lng || 105;
-    var view = new this.Views.LoginView();
-    this.mapView = new this.Views.MapView({topbar: view});
+    this.mapView = new this.Views.MapView({model: user});
   }
 };
 

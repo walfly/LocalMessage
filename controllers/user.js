@@ -5,12 +5,20 @@ exports.login = function(req, res){
   var latlng = req.params.latlng.split('_');
   lat = latlng[0];
   lng = latlng[1];
-  var findP = db.User.find(userID);
+  var findP = db.User.find({
+    where: {
+      id: userID
+    },
+    attributes: ['id', 'email', 'username']
+  });
   findP.success(function (user){
-    res.render('memberHome',{
-      user: user,
+    console.log(user.values);
+    res.render('memberHome', {
+      title: 'geo message',
+      user: user.values,
       lat: lat,
-      lng: lng
+      lng: lng,
+      apiKey: process.env.GOOGLEMAPSAPI,
     });
   });
   findP.error(function (err){

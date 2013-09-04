@@ -18,7 +18,10 @@ exports.submit = function (req, res){
     createP.success(function (user){
       req.session.userID = user.id;
       console.log('session is', req.session.userID);
-      res.render('memberHome', user);
+      res.render('memberHome', {
+        user: user,
+        title: 'geomessage'
+      });
     });
     createP.error(function (err){
       console.log(err);

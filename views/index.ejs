@@ -6,21 +6,21 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src = 'https://maps.googleapis.com/maps/api/js?key=<%=apiKey%>&libraries=drawing&sensor=true'></script>
-    <script src = 'javascripts/lib/jquery.js'></script>
-    <script src = 'javascripts/lib/underscore.js'></script>
-    <script src = 'javascripts/lib/backbone.js'></script>
-    <script src = 'javascripts/app/bbLogin.js'></script>
-    <script type="text/javascript" src = 'javascripts/getLocation.js'></script>
-    <script src = 'javascripts/app/views/mapView.js'></script>
-    <script src = 'javascripts/app/views/messagesView.js'></script>
-    <script src = 'javascripts/app/views/messageView.js'></script>
-    <script src = 'javascripts/app/models/messageModel.js'></script>
-    <script src = 'javascripts/app/collections/messageCollection.js'></script>
-    <script src = 'javascripts/app/templates/dialogueTemplate.js'></script>
-    <script src = 'javascripts/app/templates/loginTemplate.js'></script>
-    <script src = 'javascripts/app/views/dialogueView.js'></script>
-    <script src = 'javascripts/app/views/loginView.js'></script>
-    <script src = 'javascripts/app/helpers/viewHelpers.js'></script>
+    <script src = '/javascripts/lib/jquery.js'></script>
+    <script src = '/javascripts/lib/underscore.js'></script>
+    <script src = '/javascripts/lib/backbone.js'></script>
+    <script src = '/javascripts/app/bbLogin.js'></script>
+    <script type="text/javascript" src = '/javascripts/getLocation.js'></script>
+    <script src = '/javascripts/app/views/mapView.js'></script>
+    <script src = '/javascripts/app/templates/loginTemplate.js'></script>
+    <script src = '/javascripts/app/views/loginView.js'></script>
+    <script src = '/javascripts/app/views/messagesView.js'></script>
+    <script src = '/javascripts/app/views/messageView.js'></script>
+    <script src = '/javascripts/app/models/messageModel.js'></script>
+    <script src = '/javascripts/app/collections/messageCollection.js'></script>
+    <script src = '/javascripts/app/templates/dialogueTemplate.js'></script>
+    <script src = '/javascripts/app/views/dialogueView.js'></script>
+    <script src = '/javascripts/app/helpers/viewHelpers.js'></script>
     <script type="text/javascript">
       $(function () {
         getLocation(initializeBB);
@@ -28,7 +28,7 @@
     </script>
   </head>
   <body>
-    <div id="login">
+    <div id="topbar">
       <div class='mask'></div>
       <div class='createAccount loginOption'> <a href="/createAccount"> create account </a> </div>
       <div class='login loginOption'> log in </div>

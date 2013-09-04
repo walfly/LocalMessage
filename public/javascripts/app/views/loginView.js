@@ -1,6 +1,6 @@
 bb.Views.LoginView = Backbone.View.extend({
 
-  el: '#login',
+  el: '#topbar',
 
   template: bb.Templates.LoginFormTemplate,
 
@@ -15,6 +15,7 @@ bb.Views.LoginView = Backbone.View.extend({
   },
 
   tryPassword: function () {
+    // probably a better way
     var self = this;
     var formData = $('form').serializeArray();
     $('#username').val('');
@@ -34,7 +35,7 @@ bb.Views.LoginView = Backbone.View.extend({
         $('.loginForm').append(self.template(data));
       } else {
         var latlng = '' + bb.lat + '_' + bb.lng;
-        location.href = '/user/login/'+latlng+'/' + data.id;
+        location.href = '/member/'+latlng+'/' + data.id;
       }
     });
   },

@@ -1,9 +1,11 @@
 bb.Views.MapView = Backbone.View.extend({
   el: '#map-canvas',
 
-  initialize: function (){
+  initialize: function (options) {
     var self = this;
-    this.login = new bb.Views.LoginView();
+    if(options.topbar){
+      this.topbar = options.topbar;
+    }
     this.makeMap();
     var loadCollection = _.bind(this.loadCollection, this);
     google.maps.event.addListenerOnce(this.map, 'idle', loadCollection);

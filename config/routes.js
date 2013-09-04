@@ -15,7 +15,7 @@ module.exports = function (app){
   app.get('/login', checkSession.entry, login.page);
   app.post('/login', login.submit);
 
-  app.get('/user/login/:latlng/:id', checkSession.member, user.login);
+  app.get('/member/:latlng/:id', checkSession.member, user.login);
 
   app.get('/messages', messages.collections);
   app.get('/messages/:id', messages.model);

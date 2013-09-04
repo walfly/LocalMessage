@@ -1,18 +1,18 @@
 exports.entry = function (req, res, next){
   var findP;
+  var apiKey = process.env.GOOGLEMAPSAPI;
   if(req.session  && req.session.userID){
     console.log('has session');
     findP = db.User.find(req.session.userID)
     findP.success(function(user){
       res.render('memberHome',{
-        user: user,
-        lat: lat,
-        lng: lng
+        apiKey: apiKey,
+        title: 'geo message',
+        user: user
       });
     });
     findP.error(function (err){
       console.log('check', err);
-      var apiKey = process.env.GOOGLEMAPSAPI;
       res.render('index', {title: 'express', apiKey: apiKey});
     })
   } else {
@@ -22,10 +22,11 @@ exports.entry = function (req, res, next){
 };
 
 exports.member = function (req, res, next){
-  var findP;
-  if(!req.session && !req.session.userID){
+  if(!req.session || !req.session.userID){
+    console.log('no session');
     res.redirect('/');
   } else {
+    console.log('going to next callback');
     next();
   }
 };

@@ -53,7 +53,7 @@ a {
   color: #00B7FF;
 }
 
-#login{
+#topbar{
   top: 0px;
   left: 0px;
   background-color: white;
@@ -62,7 +62,7 @@ a {
   border-bottom: 1px solid black;
 }
 
-#login > .loginOption{
+#topbar > .loginOption{
   display: inline-block;
 }
 
