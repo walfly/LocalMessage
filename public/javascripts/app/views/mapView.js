@@ -8,7 +8,20 @@ bb.Views.MapView = Backbone.View.extend({
     }
     this.makeMap();
     var loadCollection = _.bind(this.loadCollection, this);
+    var drawUser = _.bind(this.setClientMarker, this);
     google.maps.event.addListenerOnce(this.map, 'idle', loadCollection);
+    google.maps.event.addListenerOnce(this.map, 'idle', drawUser);
+  },
+
+  makeMap: function () {
+    google.maps.visualRefresh = true;
+    this.pos = new google.maps.LatLng(bb.lat, bb.lng);
+    var myOptions = {
+      zoom: 11,
+      center: this.pos,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    this.map = new google.maps.Map(this.el, myOptions);
   },
 
   loadCollection: function (ev) {
@@ -28,16 +41,20 @@ bb.Views.MapView = Backbone.View.extend({
     this.addMarkers();
   },
 
-  makeMap: function () {
-    google.maps.visualRefresh = true;
-    this.pos = new google.maps.LatLng(bb.lat, bb.lng);
-    var myOptions = {
-      zoom: 11,
-      center: this.pos,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    }
-    this.map = new google.maps.Map(this.el, myOptions);
+  setClientMarker: function () {
+    var size = new google.maps.Size(20, 20);
+    this.icon = {
+      scaledSize: size,
+      url: '/images/blue_dot.png'
+    },
+    this.clientLocation = new google.maps.Marker({
+      map: this.map,
+      icon: this.icon,
+      position: this.pos
+    });
+    this.setUpWatch();
   },
+
 
   mapEvents: {
     'bounds_changed': 'updateCollectionBounds'
@@ -55,7 +72,22 @@ bb.Views.MapView = Backbone.View.extend({
     return returnArray;
   },
 
-  updateCollectionBounds: function (){
+  setUpWatch: function () {
+    var self = this;
+    if(navigator.geolocation){
+      navigator.geolocation.watchPosition(function (position){
+        var crd = position.coords;
+        var lat = crd.latitude;
+        var lng = crd.longitude;
+        bb.lat = lat;
+        bb.lng = lng;
+        self.pos = new google.maps.LatLng(lat, lng);
+        self.clientLocation.setPosition(self.pos);
+      });
+    }
+  },
+
+  updateCollectionBounds: function () {
     var bounds = this.getMapBounds();
     this.messages.updateBounds(bounds);
   },

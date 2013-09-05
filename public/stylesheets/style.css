@@ -1,12 +1,18 @@
+*{
+  box-sizing: border-box;
+}
+
 html{
   height: 100%;
 }
+
 body {
   height: 100%;
   padding: 0px;
   margin: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+
 .container {
   height: 90%;
   padding: 0px;
@@ -28,14 +34,14 @@ body {
   overflow: hidden;
 }
 
-.loginForm {
+.modal {
   display: none;
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   top: 50%;
   left: 50%;
-  margin-left: -100px;
-  margin-top: -100px;
+  margin-left: -125px;
+  margin-top: -125px;
   background-color: rgba(255,255,255, 1);
   z-index: 9001;
   position: fixed;
@@ -57,13 +63,29 @@ a {
   top: 0px;
   left: 0px;
   background-color: white;
+  position: relative;
   height: 35px;
   width: 100%;
   border-bottom: 1px solid black;
 }
 
 #topbar > .option{
+  float: right;
+  padding: 5px;
+  background-color: black;
+  color: white;
+  border-radius: 2px;
+  margin-left: 5px;
   display: inline-block;
+}
+
+.greeting{
+  display: inline-block;
+  text-align: center;
+  margin: 0 auto;
+  /*right: 50%;
+  width: 100px;
+  margin-left: -50px;*/
 }
 
 #map-canvas{

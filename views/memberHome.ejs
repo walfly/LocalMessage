@@ -12,6 +12,7 @@
     <script src = '/javascripts/app/bbMember.js'></script>
     <script type="text/javascript" src = '/javascripts/getLocation.js'></script>
     <script src = '/javascripts/app/views/mapView.js'></script>
+    <script src = '/javascripts/app/views/navigationView.js'></script>
     <script src = '/javascripts/app/views/messagesView.js'></script>
     <script src = '/javascripts/app/views/messageView.js'></script>
     <script src = '/javascripts/app/models/messageModel.js'></script>
@@ -19,7 +20,6 @@
     <script src = '/javascripts/app/templates/dialogueTemplate.js'></script>
     <script src = '/javascripts/app/templates/loginTemplate.js'></script>
     <script src = '/javascripts/app/views/dialogueView.js'></script>
-    <script src = '/javascripts/app/views/loginView.js'></script>
     <script src = '/javascripts/app/helpers/viewHelpers.js'></script>
     <script type="text/javascript">
       var lat = <%= lat %>;
@@ -39,8 +39,10 @@
   </head>
   <body>
     <div id="topbar">
+      <div class='mask'></div>
+      <div class='greeting'> Hello <%=user.username%> </div>
       <div class='add option'> Add Message </div>
-      <div class='profile option'><%=user.username%>'s Profile</div>
+      <div class='profile option'>Edit Profile</div>
     </div>
     <div class='container'>
       <div id = 'map-canvas'></div>

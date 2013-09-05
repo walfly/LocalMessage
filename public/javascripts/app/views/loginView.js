@@ -5,13 +5,20 @@ bb.Views.LoginView = Backbone.View.extend({
   template: bb.Templates.LoginFormTemplate,
 
   initialize: function () {
-    this.render();
   },
 
   events:{
     'click .login': 'loginScreen',
-    'click .mask': 'hideLogin',
-    'click .submit': 'tryPassword'
+    'click .createAccount': 'createAccountScreen',
+    'click .mask': 'hideModal',
+    'click .submit': 'tryPassword',
+    'keyup #password': 'isEnter'
+  },
+
+  isEnter: function (e) {
+    if (e.keyCode === 13){
+      this.tryPassword();
+    }
   },
 
   tryPassword: function () {
@@ -31,8 +38,8 @@ bb.Views.LoginView = Backbone.View.extend({
     });
     submit.done( function (data) {
       if(data.err){
-        $('.loginForm').empty();
-        $('.loginForm').append(self.template(data));
+        $('.modal').empty();
+        $('.modal').append(self.template(data));
       } else {
         var latlng = '' + bb.lat + '_' + bb.lng;
         location.href = '/member/'+latlng+'/' + data.id;
@@ -42,18 +49,19 @@ bb.Views.LoginView = Backbone.View.extend({
 
   loginScreen: function () {
     $('.mask').css('display', 'block');
-    $('.loginForm').append(this.template({err:0}));
-    $('.loginForm').css('display', 'block');
+    $('.modal').append(this.template({err:0}));
+    $('.modal').css('display', 'block');
   },
 
-  hideLogin: function () {
+  createAccountScreen: function () {
+    var newUser = new bb.Models.UserModel();
+    this.createAccount =
+  }
+
+  hideModal: function () {
     $('.mask').css('display', 'none');
-    $('.loginForm').css('display', 'none');
-    $('.loginForm').empty();
-  },
-
-  render: function () {
-    return this;
+    $('.modal').css('display', 'none');
+    $('.modal').empty();
   }
 
 });

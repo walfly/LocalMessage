@@ -1,7 +1,8 @@
 bb.Templates.LoginFormTemplate = _.template(''+
   '<h1>Log In</h1>' +
     '<form>' +
-      '<% if (err && err === "1") {%>' +
+    '<%console.log(err)%>'+
+      '<% if(err === 1){%>' +
         '<div style="color:red;">Invalid username and password</div>'+
       '<%}%>' +
     '<table>' +
